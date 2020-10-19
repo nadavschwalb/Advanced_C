@@ -33,25 +33,92 @@ Linked_List* append_node(Linked_List* list, Node* end_node) {
 	return list;
 }
 
-//TODO: insert node at begining of list
- 
-//TODO: insert node after first occurrence of j
 
-//TODO: print the first index where node i is found -1 if not found, index starts at 0
+Linked_List* push_node(Linked_List* list, Node* push_node) {
+	push_node->next = list->head;
+	list->head->prev = push_node;
+	list->head = push_node;
+	return list;
+ }
 
-//TODO: remove node at index i, if index is out of bound print error and exit
+Linked_List* insert_after(Linked_List* list, int delimit_node, Node* insert_node) {
+	Node* curser = list->head;
+	while (curser->next != NULL)
+	{
+		if (curser->data == delimit_node) {
+			curser->next->prev = insert_node;
+			insert_node->next = curser->next;
+			curser->next = insert_node;
+			insert_node->prev = curser;
+			return list;
+		}
+		curser = curser->next;
+	}
+	printf("AccessError: %d not found in list\n", delimit_node);
+	exit(-1);
+}
 
-//UNDONE: print entire list as array []
+void print_index(Linked_List* list, int node_data) {
+	Node* curser = list->head;
+	int index = 0;
+	while (curser != NULL) {
+		if (curser->data == node_data) {
+			printf("element %d found at index %d\n", node_data, index);
+			return;
+		}
+		index++;
+		curser = curser->next;
+	}
+	printf("ErrorCode :-1 element not found\n");
+	return;
+}
+
+
+void remove_node(Linked_List* list, int remove_index) {
+	Node* curser = list->head;
+	int index = 0;
+	if (remove_index == 0) {
+		list->head = list->head->next;
+		printf("element %d removed at index %d\n", curser->data, remove_index);
+		free(curser);
+		return;
+	}
+	curser = curser->next;
+	index++;
+	while (curser->next != NULL){
+		if (index == remove_index) {
+			curser->next->prev = curser->prev;
+			curser->prev->next = curser->next;
+			printf("element %d removed at index %d\n", curser->data, index);
+			free(curser);
+			return;
+		}
+		curser = curser->next;
+		index++;
+	}
+	if (index == remove_index) {
+		curser->prev->next = NULL;
+		printf("element %d removed at index %d\n", curser->data, index);
+		return;
+	}
+	else {
+		printf("AccessError: index given {%d} is out of bounds\n",remove_index);
+		exit(-1);
+	}
+
+}
+
+
 
 void print_list(Linked_List* list) {
 	Node* curser = list->head;
 	printf("list: [");
-	while (curser != NULL)
+	while (curser->next != NULL)
 	{
 		printf("%d, ", curser->data);
 		curser = curser->next;
 	}
-	printf(" ]\n");
+	printf("%d]\n",curser->data);
 }
 
 
