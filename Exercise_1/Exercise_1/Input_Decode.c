@@ -1,5 +1,6 @@
 #include "Input_Decode.h"
 #include "Linked_List.h"
+#include <string.h>
 
 
 //TODO: input parser , Not case sensative 
