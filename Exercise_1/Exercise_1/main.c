@@ -40,9 +40,18 @@ int main(int argc, char** argv) {
 	print_list(list);
 	remove_node(list, 4);
 	print_list(list);
-	remove_node(list, 6);
+	remove_node(list, 0);
 	print_list(list);
-
+	remove_node(list, 0);
+	print_list(list);
+	remove_node(list, 0);
+	print_list(list);
+	remove_node(list, 0);
+	print_list(list);
+	remove_node(list, 0);
+	print_list(list);
+	remove_node(list, 0);
+	print_list(list);
 	if(linked_list_cleanup(list)) return 0;
 	else return(-1);
 }
