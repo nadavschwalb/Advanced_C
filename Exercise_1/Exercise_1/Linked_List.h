@@ -1,5 +1,8 @@
-#pragma once
-#include <stdio.h>
+
+#ifndef LINKED_LIST_H
+#define LINKED_LIST_H
+
+
 
 typedef struct Node
 {
@@ -25,3 +28,5 @@ Linked_List* insert_after(Linked_List* list, int delimit_node, Node* insert_node
 void print_index(Linked_List* list, int node_data);
 void remove_node(Linked_List* list, int remove_index);
 int list_empty(Linked_List* list);
+
+#endif // !LINKED_LIST_H

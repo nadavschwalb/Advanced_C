@@ -1,14 +1,12 @@
-#include "Input_Decode.h"
-#include "Linked_List.h"
+
 #include <string.h>
 #include <stdbool.h>
 #include<ctype.h>
+#include <stdio.h>
+#include "Linked_List.h"
 
 
-//TODO: input parser , Not case sensative 
-
-
-void command_exeutor(Linked_List* list, char* input_command, int i, int j) {
+void command_executor(Linked_List* list, char* input_command, int i, int j) {
 	extern bool exit_condition;
 	if (0 == strcmp(input_command, "add_end")) {
 		append_node(list,creat_new_node(i));

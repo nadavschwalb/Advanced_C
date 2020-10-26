@@ -1,5 +1,6 @@
 #include "Input_Decode.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 
 Linked_List* init_list() {
@@ -72,20 +73,20 @@ Linked_List* insert_after(Linked_List* list, int delimit_node, Node* insert_node
 
 void print_index(Linked_List* list, int node_data) {
 	if (list_empty(list)) {
-		printf("ErrorCode :-1 element not found\n");
+		printf("-1\n");
 		return;
 	}
 	Node* curser = list->head;
 	int index = 0;
 	while (curser != NULL) {
 		if (curser->data == node_data) {
-			printf("element %d found at index %d\n", node_data, index);
+			printf("%d\n", index);
 			return;
 		}
 		index++;
 		curser = curser->next;
 	}
-	printf("ErrorCode :-1 element not found\n");
+	printf("-1\n");
 	return;
 }
 
@@ -100,7 +101,6 @@ void remove_node(Linked_List* list, int remove_index) {
 	if (remove_index == 0) {
 		list->head = list->head->next;
 		if (list->head == NULL) list->tail = NULL;
-		printf("element %d removed at index %d\n", curser->data, remove_index);
 		free(curser);
 		return;
 	}
@@ -109,7 +109,6 @@ void remove_node(Linked_List* list, int remove_index) {
 		if (index == remove_index) {
 			curser->next->prev = curser->prev;
 			curser->prev->next = curser->next;
-			printf("element %d removed at index %d\n", curser->data, index);
 			free(curser);
 			return;
 		}
@@ -118,7 +117,6 @@ void remove_node(Linked_List* list, int remove_index) {
 	}
 	if (index == remove_index) { //remove last node in list
 		curser->prev->next = NULL;
-		printf("element %d removed at index %d\n", curser->data, index);
 		return;
 	}
 	else {
@@ -137,7 +135,7 @@ void print_list(Linked_List* list) {
 		return;
 	}
 	Node* curser = list->head;
-	printf("list: [");
+	printf("[");
 	while (curser->next != NULL)
 	{
 		printf("%d, ", curser->data);
