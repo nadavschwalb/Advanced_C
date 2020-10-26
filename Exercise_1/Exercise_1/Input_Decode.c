@@ -3,7 +3,6 @@
 #include <string.h>
 
 
-//TODO: input parser , Not case sensative 
 
 
 void command_exeutor(Linked_List* list, char* input_command, int i, int j) {
