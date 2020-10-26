@@ -2,6 +2,7 @@
 #include "Linked_List.h"
 #include <string.h>
 #include <stdbool.h>
+#include<ctype.h>
 
 
 //TODO: input parser , Not case sensative 
@@ -20,7 +21,6 @@ void command_exeutor(Linked_List* list, char* input_command, int i, int j) {
 	}
 	else if (0 == strcmp(input_command, "index")) {
 		print_index(list, i);
-		return 0;
 	}
 	else if (0 == strcmp(input_command, "del")) {
 		remove_node(list, i);
@@ -36,5 +36,17 @@ void command_exeutor(Linked_List* list, char* input_command, int i, int j) {
 		printf("Error: Non valid command");
 	}
 }
-//TODO: exit sequence
 
+
+
+char *str_lower(char *str)
+{
+	unsigned char *p_temp = (unsigned char *)str;
+
+	while (*p_temp) {
+		*p_temp = tolower((unsigned char)*p_temp);
+		p_temp++;
+	}
+
+	return str;
+}

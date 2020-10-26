@@ -18,7 +18,7 @@ int main(int argc, char** argv) {
 		printf("Enter command: \n");
 		fgets(line, MAX_INPUT_LINE_SIZE, stdin);
 		sscanf(line, "%s %d %d \n", command, &i, &j);
-		strlwr(command);
+		str_lower(command);
 		command_exeutor(list, command, i, j);
 	}
 	return 0;
