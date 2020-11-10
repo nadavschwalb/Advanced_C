@@ -16,7 +16,7 @@ int main(int argc, char** argv) {
 			switch (*(argv[i]+1))
 			{
 			case 'i':
-				option_flag = option_flag | 0xb1000000;
+				option_flag = option_flag | 0x1000000;
 				break;
 			case 'v':
 				option_flag = option_flag | 0x0100000;
