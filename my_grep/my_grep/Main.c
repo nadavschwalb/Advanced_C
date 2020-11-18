@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include "search_str.h"
 
 
 #define MAXBUFF 4096
@@ -32,9 +33,7 @@ int main(int argc, char** argv) {
 				break;
 			case 'A':
 				option_flag = option_flag | 0x0000010;
-				spacer_line_num = atoi(argv[i 
-					
-					+ 1]);
+				spacer_line_num = atoi(argv[i + 1]);
 				break;
 			case 'c':
 				option_flag = option_flag | 0x0000001;
@@ -61,7 +60,9 @@ int main(int argc, char** argv) {
 	}
 	//TODO: while get new line until EOF
 	while (fgets(line_buffer, MAXBUFF, p_input_file) != NULL) {
-		printf("input line : %s\n", line_buffer);
+		printf("input line : %s\ninput frase to search: %s\n", line_buffer,search_buffer);
+		int t = search_str(line_buffer, search_buffer, option_flag);
+		printf("%d\n", t);
 	}
 	
 
@@ -69,6 +70,9 @@ int main(int argc, char** argv) {
 
 	//TODO: get line number
 
+
+	
+	
 	
 
 	//TODO: byte number
