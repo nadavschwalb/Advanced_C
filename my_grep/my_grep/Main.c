@@ -4,6 +4,7 @@
 #include "search_str.h"
 #include "HardCodedData.h"
 #include "Colors.h"
+#include "Print_Formats.h"
 
 
 int main(int argc, char** argv) {
@@ -50,7 +51,7 @@ int main(int argc, char** argv) {
 	}
 	strcpy(search_buffer, argv[argc - 2]);
 	strcpy(file_name, argv[argc - 1]);
-	printf("option flags: %d -i-v-n-b-x-A-c\nNUM = %d\nfilename: %s\nsearch_phrase %s\n", option_flag, spacer_line_num, file_name,search_buffer);
+	//printf("option flags: %d -i-v-n-b-x-A-c\nNUM = %d\nfilename: %s\nsearch_phrase %s\n", option_flag, spacer_line_num, file_name,search_buffer);
 	//TODO: if no file given get stdin
 
 	//TODO: open input file
@@ -61,15 +62,31 @@ int main(int argc, char** argv) {
 	}
 
 	//TODO: while get new line until EOF
-	while (fgets(line_buffer, MAXBUFF, p_input_file) != NULL) {
-		if (search_str(line_buffer, search_buffer, option_flag)) {
-			set_text_color(green_text);
-			printf("%s", line_buffer);
-			set_text_color(reset_text);
+	int line_num = 0;
+ 	while (fgets(line_buffer, MAXBUFF, p_input_file) != NULL) {
+		if ( (_v & option_flag) == _v) {
+			if (!search_str(line_buffer, search_buffer, option_flag)) {
+				//set_text_color(green_text);
+				print_formater(p_input_file, line_buffer, &line_num, option_flag);
+				printf("%s",line_buffer);
+				//set_text_color(reset_text);
+			}
+			else {
+				//printf("%s", line_buffer);
+			}
 		}
 		else {
-			printf("%s", line_buffer);
+			if (search_str(line_buffer, search_buffer, option_flag)) {
+				//set_text_color(green_text);
+				print_formater(p_input_file, line_buffer, &line_num, option_flag);
+				printf("%s", line_buffer);
+				//set_text_color(reset_text);
+			}
+			else {
+				//printf("%s", line_buffer);
+			}
 		}
+		line_num++;
 	}
 
 

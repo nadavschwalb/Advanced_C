@@ -24,6 +24,9 @@
     <ClCompile Include="Colors.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Print_Formats.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="test.txt">
@@ -38,6 +41,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Colors.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Print_Formats.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
