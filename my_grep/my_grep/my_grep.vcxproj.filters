@@ -21,6 +21,9 @@
     <ClCompile Include="search_str.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Colors.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="test.txt">
@@ -31,5 +34,16 @@
     <ClInclude Include="search_str.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="HardCodedData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Colors.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Makefile">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

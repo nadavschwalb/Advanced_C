@@ -1,54 +1,54 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include <Windows.h>
+#include <ctype.h>
+#include <stdbool.h>
 #include "search_str.h"
+#include "HardCodedData.h"
 
-#define MAXBUFF 4096
-int search_str(char* new_line, char* search_phrase, int mode_flag) 
+//declarations
+void str_lowwer(char* str_to_modifie);
+
+
+
+bool search_str(char* new_line, char* search_phrase, int mode_flag) 
 {
 	int return_val;
 	//empty line check
 	if (*(new_line) == '\n') return 0;
 
 	char* line_copy = (char*)malloc(strlen(new_line) + 1);
-	char* phrase_copy = (char*)malloc(strlen(search_phrase) + 10);
+	if (line_copy == NULL) { printf("failed to allocate memory\n"); exit(-1); }
+	char* phrase_copy = (char*)malloc(strlen(search_phrase) + 2);
+	if (line_copy == NULL) { printf("failed to allocate memory\n"); exit(-1); }
 	strcpy(line_copy, new_line);
 	strcpy(phrase_copy, search_phrase);
-	// -i mode , ignore big/small letters
-	if (0x01000000 == (0x01000000 & mode_flag)) {
+
+	// -i mode , ignore case 
+	if (_i == (_i & mode_flag)) {
 		str_lowwer(line_copy);
 		str_lowwer(phrase_copy);
 	}
-	//only frase in the kine -x
-	if (0x00000100 ==(0x00000100 & mode_flag)) {
-		if (strcmp(line_copy, strcat(phrase_copy, "\n")) == 0) {
-			return_val= 1;
-		}
-		else {
-			return_val= 0;
-		}
+	// -x phrase matches line exactly
+	if (_x ==(_x & mode_flag)) {
+		//printf("%s%s\n", line_copy, phrase_copy);
+		if (strcmp(line_copy, phrase_copy) == 0 || 
+			strcmp(line_copy, strcat(phrase_copy, "\n")) == 0
+			) return_val = true;
+		else return_val= false;
 	}
-	//not only the frase in line
+	//phrase is substring of line
 	else {
-		if (strstr(line_copy, phrase_copy) == NULL) {
-			return_val= 0;
-		}
-		else {
-			return_val= 1;
-		}
+		if (strstr(line_copy, phrase_copy) == NULL) return_val= false;
+		else return_val= true;
 	}
-	//printf_s("%s\n", new_line);
-	//printf_s("%s\n", line_copy);	
-	//printf_s("%s\n",search_frase );
-	//printf_s("%s\n", frase_copy);
 	
 	//free all the memory used
 	free(line_copy);
 	free(phrase_copy);
 	return return_val;
 }
-		//TODO str_lowwer()
+
 
 
 void str_lowwer(char* str_to_modifie) {
@@ -61,29 +61,3 @@ void str_lowwer(char* str_to_modifie) {
 	return;
 }
 
-
- /*char* copy_line_to_lowwer(char* original_line) {
-	char* low_line=(char*)malloc(MAXBUFF+1);
-	int count=0;
-	strcpy(low_line, original_line);
-	while (*(low_line+count) != '\0') 
-	{
-		*(low_line+count) = tolower(*(low_line+count));
-		count = count + sizeof(char);
-	}
-	return low_line;
-}
-
- char* coppy_search_str_to_lowwer(char* frase) {
-	 int count = 0;
-	 char* low_frase_copy = (char*)malloc(MAXBUFF + 1);
-	 strcpy(low_frase_copy, frase);
-	 while (*(low_frase_copy + count) != '\0') {
-		 *(low_frase_copy+count) = tolower(*(low_frase_copy + count));
-		 count = count + sizeof(char);
-	 }
-	 return low_frase_copy;
- }
-
-
- */

@@ -128,14 +128,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Colors.c" />
     <ClCompile Include="Main.c" />
     <ClCompile Include="search_str.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Colors.h" />
+    <ClInclude Include="HardCodedData.h" />
     <ClInclude Include="search_str.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="test.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Makefile" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
