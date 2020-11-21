@@ -51,7 +51,6 @@ int main(int argc, char** argv) {
 	}
 	strcpy(search_buffer, argv[argc - 2]);
 	strcpy(file_name, argv[argc - 1]);
-	//printf("option flags: %d -i-v-n-b-x-A-c\nNUM = %d\nfilename: %s\nsearch_phrase %s\n", option_flag, spacer_line_num, file_name,search_buffer);
 	//TODO: if no file given get stdin
 
 	//TODO: open input file
