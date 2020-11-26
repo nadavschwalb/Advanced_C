@@ -2,10 +2,10 @@
 #include <string.h>
 #include <stdlib.h>
 #include "search_str.h"
-
 #include "HardCodedData.h"
+
 void print_formater(FILE* input_file, char* line_buffer, int* p_line_num, int options_flag) {
-	char* formated_line = (char*)malloc(MAXBUFF);
+	char* formated_line = (char*)malloc(MAX_BUFFER);
 	if (formated_line == NULL) { printf("failed to allocate memory\n"); exit(-1); }
 	if ((_b & options_flag) == _b && (_n & options_flag) == _n) {
 		sprintf(formated_line, "%lu : %d : %s", ftell(input_file), *p_line_num, line_buffer);

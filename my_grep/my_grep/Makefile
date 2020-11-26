@@ -1,12 +1,10 @@
 CFLAG = -std=c99
-my_grep: Main.o search_str.o Colors.o Print_Formats.o
-	gcc $(CFLAG) -o my_grep Main.o search_str.o Colors.o Print_Formats.o
+my_grep: Main.o search_str.o Print_Formats.o
+	gcc $(CFLAG) -o my_grep Main.o search_str.o Print_Formats.o
 Main.o: Main.c
 	gcc $(CFLAG) -c Main.c
 search_str.o:
 	gcc $(CFLAG) -c search_str.c
-Colors.o: Colors.c
-	gcc $(CFLAG) -c Colors.c
 Print_Formats.o:
 	gcc $(CFLAG) -c Print_Formats.c
 

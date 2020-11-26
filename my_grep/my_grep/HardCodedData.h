@@ -1,6 +1,10 @@
-//options flag -i-v-n-b-x-A-c-E
-#define MAXBUFF 4096
-enum MyEnum
+#ifndef HARD_CODED_DATA_H
+#define HARD_CODED_DATA_H
+
+#define MAX_BUFFER 4096
+// Options_flags is a global enum to numerate the option flags
+// therefore we declare it in the Hard Coded Data header
+enum Option_Flags 
 {
 	_i = 0b10000000,
 	_v = 0b01000000,
@@ -11,4 +15,9 @@ enum MyEnum
 	_c = 0b00000010,
 	_E = 0b00000001
 };
+
+#endif // !HARD_CODED_DATA_H
+
+
+
 

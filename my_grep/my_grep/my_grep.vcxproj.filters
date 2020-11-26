@@ -21,9 +21,6 @@
     <ClCompile Include="search_str.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Colors.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Print_Formats.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -38,9 +35,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="HardCodedData.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Colors.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Print_Formats.h">
