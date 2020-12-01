@@ -3,7 +3,6 @@
 #include <stdlib.h>
 #include "search_str.h"
 #include "HardCodedData.h"
-#include "Colors.h"
 #include "Print_Formats.h"
 
 
@@ -91,6 +90,16 @@ int main(int argc, char** argv) {
 		}
 		line_num++;
 	}
+
+	//TODO: -A NUM - print NUM rows after each found row
+	//TODO: -n -print line number in file
+	//TODO: -b - print bytes before each line
+
+	nadav shoval
+	nadav adi
+	bla bla
+
+	my_grep -A 2 
 
 
 		fclose(p_input_file);
