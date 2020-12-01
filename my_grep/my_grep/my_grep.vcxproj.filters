@@ -24,6 +24,9 @@
     <ClCompile Include="Print_Formats.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Regex_Parser.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="test.txt">

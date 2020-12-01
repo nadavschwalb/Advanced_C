@@ -11,7 +11,7 @@ void str_lowwer(char* str_to_modifie);
 
 
 
-bool search_str(char* new_line, char* search_phrase, int mode_flag) 
+bool search_str(char* new_line, char* search_phrase, int option_flag) 
 {
 	int return_val;
 	//empty line check
@@ -25,12 +25,12 @@ bool search_str(char* new_line, char* search_phrase, int mode_flag)
 	strcpy(phrase_copy, search_phrase);
 
 	// -i mode , ignore case 
-	if (_i == (_i & mode_flag)) {
+	if (_i == (_i & option_flag)) {
 		str_lowwer(line_copy);
 		str_lowwer(phrase_copy);
 	}
 	// -x phrase matches line exactly
-	if (_x ==(_x & mode_flag)) {
+	if (_x ==(_x & option_flag)) {
 		//printf("%s%s\n", line_copy, phrase_copy);
 		if (strcmp(line_copy, phrase_copy) == 0 || 
 			strcmp(line_copy, strcat(phrase_copy, "\n")) == 0
@@ -46,7 +46,8 @@ bool search_str(char* new_line, char* search_phrase, int mode_flag)
 	//free all the memory used
 	free(line_copy);
 	free(phrase_copy);
-	return return_val;
+	if ((_v & option_flag) == _v) return !return_val;
+	else return return_val;
 }
 
 
