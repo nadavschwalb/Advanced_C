@@ -10,7 +10,7 @@ void print_formater(FILE* input_file, char* line_buffer, formating_args* args, i
 	char* formated_line = (char*)malloc(MAX_BUFFER);
 	if (formated_line == NULL) { printf("failed to allocate memory\n"); exit(-1); }
 	if ((_b & options_flag) == _b && (_n & options_flag) == _n) {
-		sprintf(formated_line, "%d%c%lu%c%s", args->line_num,
+		sprintf(formated_line, "%d%c%d%c%s", args->line_num,
 											args->seperating_char,
 											args->byte_num,
 											args->seperating_char,
@@ -20,7 +20,7 @@ void print_formater(FILE* input_file, char* line_buffer, formating_args* args, i
 		sprintf(formated_line, "%d%c%s", args->line_num, args->seperating_char, line_buffer);
 	}
 	else if ((_b & options_flag) == _b) {
-		sprintf(formated_line, "%lu%c%s", args->byte_num, args->seperating_char, line_buffer);
+		sprintf(formated_line, "%d%c%s", args->byte_num, args->seperating_char, line_buffer);
 	}
 	else {
 		free(formated_line);

@@ -11,9 +11,6 @@ int main(int argc, char** argv) {
 	int option_flag = 0b0; //options flag -i-v-n-b-x-A-c-E
 	int options_count = 0;
 	char file_name[MAX_BUFFER];
-	//char line_buffer[MAX_BUFFER]; 
-	//char search_buffer[MAX_BUFFER];
-	char regex_buffer[MAX_BUFFER];
 	formating_args print_format_args = { 0, 0, 1, 0, false, ':'};
 	search_args search_args = {"",""};
 	FILE* p_input_file;
@@ -52,8 +49,8 @@ int main(int argc, char** argv) {
 				options_count++;
 			case 'E':
 				option_flag = option_flag | _E;
-				options_count+=2;
-				strcpy(regex_buffer, argv[i + 1]);
+				options_count+=1;
+				strcpy(search_args.regex_str, argv[i + 1]);
 
 			default:
 				option_flag = option_flag | 0b0;
@@ -74,6 +71,9 @@ int main(int argc, char** argv) {
 	else {
 		strcpy(search_args.search_str, argv[argc - 1]);
 		p_input_file = stdin;
+	}
+	if ((_E & option_flag) == _E) {
+		strncpy(search_args.search_str, &search_args.regex_str[1],strlen(search_args.regex_str)-2);
 	}
 	
 
