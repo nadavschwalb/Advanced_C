@@ -11,5 +11,3 @@ bool search_str(char* new_line, char* search_phrase, int mode_flag);
 #endif // !SEARCH_STR_H
 
 
-
-

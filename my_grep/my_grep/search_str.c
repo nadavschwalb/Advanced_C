@@ -61,4 +61,3 @@ void str_lowwer(char* str_to_modifie) {
 	}
 	return;
 }
-
