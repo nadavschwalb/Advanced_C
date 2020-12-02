@@ -61,3 +61,17 @@ void str_lowwer(char* str_to_modifie) {
 	}
 	return;
 }
+
+void regex_cleaner(char* dirtiy_str, char* delimiter) {
+	char* token = "";
+	char clean_str[MAX_BUFFER];
+	token = strtok(dirtiy_str, delimiter);
+	while (token != NULL) {
+		strcat(clean_str, token);
+		token = strtok(NULL, delimiter);
+	}
+	strcpy(dirtiy_str, clean_str);
+	
+	//char* temp = strstr(dirtiy_str, "//");
+	//strcat(dirtiy_str, dirtiy_str[*temp + 2]);
+}

@@ -48,10 +48,18 @@ int main(int argc, char** argv) {
 				option_flag = option_flag | _c;
 				options_count++;
 			case 'E':
-				printf("%s\n", argv[i+1]);
 				option_flag = option_flag | _E;
 				options_count+=1;
 				strcpy(search_args.regex_str, argv[i + 1]);
+				char* tokens[2];
+				tokens[0] = strtok(search_args.regex_str, "\\");
+				tokens[1] = strtok(NULL, "\\");
+				sprintf(search_args.regex_str, "%s%s", tokens[0], tokens[1]);
+				strcpy(search_args.regex_str, search_args.regex_str + 1);
+				(search_args.regex_str[strlen(search_args.regex_str) - 1]) = '\0';
+
+				//char* temp = strstr(search_args.regex_str, "\\");
+				//strcat(search_args.regex_str, temp+2);
 
 			default:
 				option_flag = option_flag | 0b0;
@@ -74,10 +82,7 @@ int main(int argc, char** argv) {
 		p_input_file = stdin;
 	}
 	if ((_E & option_flag) == _E) {
-		strcpy(search_args.search_str, "");
-		strcpy(search_args.search_str, &search_args.regex_str[1]);
-		search_args.search_str[strlen(search_args.search_str)-1]='\0';
-		search_args.search_str[strlen(search_args.search_str)]=NULL;
+		strcpy(search_args.search_str, search_args.regex_str);
 	}
 	
 

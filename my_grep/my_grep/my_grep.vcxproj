@@ -97,7 +97,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <DisableSpecificWarnings>4996</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4996 </DisableSpecificWarnings>
       <ForcedIncludeFiles>
       </ForcedIncludeFiles>
     </ClCompile>
