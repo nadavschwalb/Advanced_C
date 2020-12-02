@@ -139,7 +139,6 @@
   <ItemGroup>
     <ClCompile Include="Main.c" />
     <ClCompile Include="Print_Formats.c" />
-    <ClCompile Include="Regex_Parser.c" />
     <ClCompile Include="search_str.c" />
   </ItemGroup>
   <ItemGroup>
