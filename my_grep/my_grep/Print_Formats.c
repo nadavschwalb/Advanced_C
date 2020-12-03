@@ -35,6 +35,7 @@ void print_formater(FILE* input_file, char* line_buffer, formating_args* args, i
 
 
 void printer(FILE* input_file, search_args* search_args, formating_args* format_args, int options_flag) {
+	//printf("%d-%d-%s\n",format_args->byte_num,strlen(search_args->line),search_args->line);
 	if ((_A & options_flag) == _A && format_args->first_line_found == true) { // A option active and first hit was handled
 		if (search_str(search_args->line, search_args->search_str, options_flag)) { //hit
 			if (format_args->extra_lines_count >= format_args->extra_lines_to_print+1) { //new block
@@ -75,6 +76,9 @@ void printer(FILE* input_file, search_args* search_args, formating_args* format_
 			format_args->first_line_found = true;
 			return;
 		}
-		else return;
+		else{
+			format_args->byte_num += strlen(search_args->line); 
+			return;
+		}
 	}
 }

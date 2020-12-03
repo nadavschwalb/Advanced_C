@@ -51,12 +51,14 @@ int main(int argc, char** argv) {
 				option_flag = option_flag | _E;
 				options_count+=1;
 				strcpy(search_args.regex_str, argv[i + 1]);
+				//printf("%s\n",search_args.regex_str);
 				char* tokens[2];
 				tokens[0] = strtok(search_args.regex_str, "\\");
 				tokens[1] = strtok(NULL, "\\");
 				sprintf(search_args.regex_str, "%s%s", tokens[0], tokens[1]);
-				strcpy(search_args.regex_str, search_args.regex_str + 1);
-				(search_args.regex_str[strlen(search_args.regex_str) - 1]) = '\0';
+				//printf("%s\n",search_args.regex_str);
+				//strcpy(search_args.regex_str, search_args.regex_str + 1);
+				//(search_args.regex_str[strlen(search_args.regex_str) - 1]) = '\0';
 
 				//char* temp = strstr(search_args.regex_str, "\\");
 				//strcat(search_args.regex_str, temp+2);
