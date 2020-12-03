@@ -52,10 +52,7 @@ int main(int argc, char** argv) {
 				option_flag = option_flag | _E;
 				options_count+=1;
 				strcpy(search_args.regex_str, argv[i + 1]);
-				char* tokens[2];
-				tokens[0] = strtok(search_args.regex_str, "\\");
-				tokens[1] = strtok(NULL, "\\");
-				sprintf(search_args.regex_str, "%s%s", tokens[0], tokens[1]);
+				regex_cleaner(search_args.regex_str, "\\");
 				break;
 
 

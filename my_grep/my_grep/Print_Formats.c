@@ -35,10 +35,10 @@ void print_formater(FILE* input_file, char* line_buffer, formating_args* args, i
 
 
 void printer(FILE* input_file, search_args* search_args, formating_args* format_args, int options_flag) {
-	//printf("%d-%d-%s\n",format_args->byte_num,strlen(search_args->line),search_args->line);
-	if ((_A & options_flag) == _A && format_args->first_line_found == true) { // A option active and first hit was handled
-		if (search_str(search_args->line, search_args->search_str, options_flag)) { //hit
-			if (format_args->extra_lines_count >= format_args->extra_lines_to_print+1) { //new block
+	
+	if ((_A & options_flag) == _A && format_args->first_line_found == true) { 
+		if (search_str(search_args->line, search_args->search_str, options_flag)) { 
+			if (format_args->extra_lines_count >= format_args->extra_lines_to_print+1) {
 				format_args->seperating_char = ':';
 				format_args->extra_lines_count = 0;
 				print_formater(input_file, search_args->line, format_args, options_flag);
@@ -46,7 +46,7 @@ void printer(FILE* input_file, search_args* search_args, formating_args* format_
 				printf("%s", search_args->line);
 				return;
 			}
-			else {																	//hit not new block
+			else {																	
 				format_args->seperating_char = ':';
 				format_args->extra_lines_count = 0;
 				print_formater(input_file, search_args->line, format_args, options_flag);
@@ -54,8 +54,8 @@ void printer(FILE* input_file, search_args* search_args, formating_args* format_
 				return;
 			}
 		}
-		else { //miss A option active
-			if (format_args->extra_lines_count < format_args->extra_lines_to_print) {// within extra line count
+		else { 
+			if (format_args->extra_lines_count < format_args->extra_lines_to_print) {
 				format_args->seperating_char = '-';
 				format_args->extra_lines_count++;
 				print_formater(input_file, search_args->line, format_args, options_flag);
@@ -70,7 +70,7 @@ void printer(FILE* input_file, search_args* search_args, formating_args* format_
 		}
 	}
 	else {
-		if (search_str(search_args->line, search_args->search_str, options_flag)) { //handle first hit or no A option
+		if (search_str(search_args->line, search_args->search_str, options_flag)) { 
 			print_formater(input_file, search_args->line, format_args, options_flag);
 			printf("%s", search_args->line);
 			format_args->first_line_found = true;

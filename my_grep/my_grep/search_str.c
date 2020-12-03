@@ -6,7 +6,6 @@
 #include "search_str.h"
 #include "HardCodedData.h"
 
-//declarations
 void str_lowwer(char* str_to_modifie);
 
 
@@ -14,7 +13,7 @@ void str_lowwer(char* str_to_modifie);
 bool search_str(char* new_line, char* search_phrase, int option_flag) 
 {
 	int return_val;
-	//empty line check
+
 	if (*(new_line) == '\n') return 0;
 
 	char* line_copy = (char*)malloc(strlen(new_line) + 1);
@@ -31,19 +30,16 @@ bool search_str(char* new_line, char* search_phrase, int option_flag)
 	}
 	// -x phrase matches line exactly
 	if (_x ==(_x & option_flag)) {
-		//printf("%s%s\n", line_copy, phrase_copy);
 		if (strcmp(line_copy, phrase_copy) == 0 || 
 			strcmp(line_copy, strcat(phrase_copy, "\n")) == 0
 			) return_val = true;
 		else return_val= false;
 	}
-	//phrase is substring of line
+
 	else {
 		if (strstr(line_copy, phrase_copy) == NULL) return_val= false;
 		else return_val= true;
 	}
-	
-	//free all the memory used
 	free(line_copy);
 	free(phrase_copy);
 	if ((_v & option_flag) == _v) return !return_val;
@@ -63,15 +59,14 @@ void str_lowwer(char* str_to_modifie) {
 }
 
 void regex_cleaner(char* dirtiy_str, char* delimiter) {
-	char* token = "";
-	char clean_str[MAX_BUFFER];
-	token = strtok(dirtiy_str, delimiter);
-	while (token != NULL) {
-		strcat(clean_str, token);
-		token = strtok(NULL, delimiter);
-	}
-	strcpy(dirtiy_str, clean_str);
+	char* tokens[MAX_BUFFER];
+	int i = 1;
+	tokens[0] = strtok(dirtiy_str, "\\");
 	
-	//char* temp = strstr(dirtiy_str, "//");
-	//strcat(dirtiy_str, dirtiy_str[*temp + 2]);
+	while (tokens[i-1] != NULL) {
+		tokens[i] = strtok(NULL, "\\");
+		i++;
+	}
+	
+	sprintf(dirtiy_str, "%s%s", tokens[0], tokens[1]);
 }
