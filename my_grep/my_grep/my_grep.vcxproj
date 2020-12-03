@@ -150,6 +150,7 @@
     <Text Include="test.txt" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="2013.html" />
     <None Include="Makefile" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

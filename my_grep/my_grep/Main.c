@@ -47,21 +47,17 @@ int main(int argc, char** argv) {
 			case 'c':
 				option_flag = option_flag | _c;
 				options_count++;
+				break;
 			case 'E':
 				option_flag = option_flag | _E;
 				options_count+=1;
 				strcpy(search_args.regex_str, argv[i + 1]);
-				//printf("%s\n",search_args.regex_str);
 				char* tokens[2];
 				tokens[0] = strtok(search_args.regex_str, "\\");
 				tokens[1] = strtok(NULL, "\\");
 				sprintf(search_args.regex_str, "%s%s", tokens[0], tokens[1]);
-				//printf("%s\n",search_args.regex_str);
-				//strcpy(search_args.regex_str, search_args.regex_str + 1);
-				//(search_args.regex_str[strlen(search_args.regex_str) - 1]) = '\0';
+				break;
 
-				//char* temp = strstr(search_args.regex_str, "\\");
-				//strcat(search_args.regex_str, temp+2);
 
 			default:
 				option_flag = option_flag | 0b0;
@@ -89,15 +85,20 @@ int main(int argc, char** argv) {
 	
 
  	while (fgets(search_args.line, MAX_BUFFER, p_input_file) != NULL) {
-		printer(p_input_file, &search_args, &print_format_args, option_flag);
-		print_format_args.line_num++;
+		if ((_c & option_flag) == _c) {
+			if (search_str(search_args.line, search_args.search_str, option_flag)) {
+				print_format_args.line_num++;
+			}
+		}
+		else {
+			printer(p_input_file, &search_args, &print_format_args, option_flag);
+			print_format_args.line_num++;
+		}
+		
 
 	}
+	if ((_c & option_flag) == _c) printf("%d\n", print_format_args.line_num -1);
 
-	//TODO: -A NUM - print NUM rows after each found row
-	//TODO: -n -print line number in file
-	//TODO: -b - print bytes before each line
-	//TODO: -E regex
 		fclose(p_input_file);
 		return 0;
 

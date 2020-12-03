@@ -45,5 +45,6 @@
     <None Include="Makefile">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="2013.html" />
   </ItemGroup>
 </Project>
