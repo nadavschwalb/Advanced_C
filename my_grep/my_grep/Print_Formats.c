@@ -82,3 +82,5 @@ void printer(FILE* input_file, search_args* search_args, formating_args* format_
 		}
 	}
 }
+
+

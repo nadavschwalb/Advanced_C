@@ -139,11 +139,13 @@
   <ItemGroup>
     <ClCompile Include="Main.c" />
     <ClCompile Include="Print_Formats.c" />
+    <ClCompile Include="Regex_Engine.c" />
     <ClCompile Include="search_str.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="HardCodedData.h" />
     <ClInclude Include="Print_Formats.h" />
+    <ClInclude Include="Regex_Engine.h" />
     <ClInclude Include="search_str.h" />
   </ItemGroup>
   <ItemGroup>

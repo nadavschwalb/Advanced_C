@@ -5,6 +5,7 @@
 #include "search_str.h"
 #include "HardCodedData.h"
 #include "Print_Formats.h"
+#include "Regex_Engine.h"
 
 
 int main(int argc, char** argv) {
@@ -52,7 +53,8 @@ int main(int argc, char** argv) {
 				option_flag = option_flag | _E;
 				options_count+=1;
 				strcpy(search_args.regex_str, argv[i + 1]);
-				regex_cleaner(search_args.regex_str, "\\");
+				//regex_cleaner(search_args.regex_str, "\\");
+				//strcat(search_args.regex_str, "\0");
 				break;
 
 
@@ -80,6 +82,15 @@ int main(int argc, char** argv) {
 		strcpy(search_args.search_str, search_args.regex_str);
 	}
 	
+	//-E development
+
+	regex_member** member_list = (regex_member**)malloc(sizeof(regex_member*)*strlen(search_args.regex_str) + 1);
+	int member_list_len = 0;
+	member_list = regex_parser(search_args.regex_str,member_list,&member_list_len);
+	print_members(member_list, member_list_len);
+	free(member_list);
+
+	//end of -E development
 
  	while (fgets(search_args.line, MAX_BUFFER, p_input_file) != NULL) {
 		if ((_c & option_flag) == _c) {
