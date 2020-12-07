@@ -29,8 +29,9 @@ regex_member** regex_parser(char* search_str,regex_member** member_list, int* me
 			break;
 		case '\\':
 			member_list[member_count] = (regex_member*)malloc(sizeof(regex_member));
-			member_list[member_count]->simple_char = *search_str;
-			member_list[member_count]->type = backslash;
+			//member_list[member_count]->simple_char = *(search_str++); choose this option if bug apears on nova
+			member_list[member_count]->simple_char = *(search_str+=1);
+			member_list[member_count]->type = regular_char;
 			break;
 		default:
 			member_list[member_count] = (regex_member*)malloc(sizeof(regex_member));

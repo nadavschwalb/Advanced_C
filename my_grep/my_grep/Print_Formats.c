@@ -5,6 +5,7 @@
 #include "search_str.h"
 #include "HardCodedData.h"
 #include "Print_Formats.h"
+#include "Regex_Engine.h"
 
 void print_formater(FILE* input_file, char* line_buffer, formating_args* args, int options_flag) {
 	char* formated_line = (char*)malloc(MAX_BUFFER);
@@ -34,10 +35,10 @@ void print_formater(FILE* input_file, char* line_buffer, formating_args* args, i
 }
 
 
-void printer(FILE* input_file, search_args* search_args, formating_args* format_args, int options_flag) {
+void printer(FILE* input_file, search_args* search_args, formating_args* format_args, regex_member** member_list, int options_flag) {
 	
 	if ((_A & options_flag) == _A && format_args->first_line_found == true) { 
-		if (search_str(search_args->line, search_args->search_str, options_flag)) { 
+		if (search_str(search_args->line, search_args->search_str,member_list ,options_flag)) { 
 			if (format_args->extra_lines_count >= format_args->extra_lines_to_print+1) {
 				format_args->seperating_char = ':';
 				format_args->extra_lines_count = 0;
@@ -70,7 +71,7 @@ void printer(FILE* input_file, search_args* search_args, formating_args* format_
 		}
 	}
 	else {
-		if (search_str(search_args->line, search_args->search_str, options_flag)) { 
+		if (search_str(search_args->line, search_args->search_str, member_list,options_flag)) { 
 			print_formater(input_file, search_args->line, format_args, options_flag);
 			printf("%s", search_args->line);
 			format_args->first_line_found = true;

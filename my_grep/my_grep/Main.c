@@ -88,18 +88,18 @@ int main(int argc, char** argv) {
 	int member_list_len = 0;
 	member_list = regex_parser(search_args.regex_str,member_list,&member_list_len);
 	print_members(member_list, member_list_len);
-	free(member_list);
+	
 
 	//end of -E development
 
  	while (fgets(search_args.line, MAX_BUFFER, p_input_file) != NULL) {
 		if ((_c & option_flag) == _c) {
-			if (search_str(search_args.line, search_args.search_str, option_flag)) {
+			if (search_str(search_args.line, search_args.search_str,member_list , option_flag)) {
 				print_format_args.line_num++;
 			}
 		}
 		else {
-			printer(p_input_file, &search_args, &print_format_args, option_flag);
+			printer(p_input_file, &search_args, &print_format_args,member_list, option_flag);
 			print_format_args.line_num++;
 		}
 		
@@ -108,6 +108,7 @@ int main(int argc, char** argv) {
 	if ((_c & option_flag) == _c) printf("%d\n", print_format_args.line_num -1);
 
 		fclose(p_input_file);
+		free(member_list);
 		return 0;
 
 }
