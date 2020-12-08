@@ -42,7 +42,11 @@ regex_member** regex_parser(char* search_str,regex_member** member_list, int* me
 		search_str++;
 		member_count++;
 	}
-	*member_list_len = member_count;
+	member_list[member_count] = (regex_member*)malloc(sizeof(regex_member)); //add closing member
+	member_list[member_count]->simple_char = *search_str;
+	member_list[member_count]->type = null_teminator;
+
+	*member_list_len = member_count +1;
 	return member_list;
 }
 
@@ -85,24 +89,33 @@ char* handle_square_brackets(char* input_string, regex_member* member) {
 void print_members(regex_member** member_list, int list_size) {
 	int i = 0;
 	for(i=0; i<list_size; i++) {
-		if (member_list[i]->type == regular_char) {
+		switch (member_list[i]->type)
+		{
+		case regular_char:
 			printf("member type: regular char\nchar: %c\n", member_list[i]->simple_char);
-		}
-		else if (member_list[i]->type == paren) {
+			break;
+		case paren:
 			printf("member type: parentheses\nstr_a: %s\nstr_b: %s\n",
 				member_list[i]->p_parentheses->str_a,
 				member_list[i]->p_parentheses->str_b);
-		}
-		else if (member_list[i]->type == bracket) {
+			break;
+		case bracket:
 			printf("member type: square bracket\nstart char: %c\nend char: %c\n",
 				member_list[i]->p_square_bracket->start_char,
 				member_list[i]->p_square_bracket->end_char);
-		}
-		else if (member_list[i]->type == dot) {
-			printf("member type: dot char\nchar: %c\n", member_list[i]->simple_char);
-		}
-		else if (member_list[i]->type == backslash) {
+			break;
+		case dot:
+			printf("member type: dot\nchar: %c\n", member_list[i]->simple_char);
+			break;
+		case backslash:
 			printf("member type: backslash char\nchar: %c\n", member_list[i]->simple_char);
+			break;
+		case null_teminator:
+			printf("member type: null terminator char\nchar: %c\n", member_list[i]->simple_char);
+			break;
+		default:
+			break;
 		}
+
 	}
 }

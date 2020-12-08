@@ -2,7 +2,7 @@
 #define REGEX_ENGINE_H
 #include"HardCodedData.h"
 typedef struct square_bracket {
-	char start_char;
+	char start_char; 
 	char end_char;
 }square_bracket;
 
@@ -17,7 +17,8 @@ enum {
 	backslash,
 	paren,
 	bracket,
-	undefined
+	undefined,
+	null_teminator
 };
 typedef struct regex_member {
 	int type;

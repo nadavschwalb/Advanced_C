@@ -121,6 +121,9 @@ bool regex_strcmp(char* test_str, regex_member** member_list) {
 				}
 				else return false;
 				break;
+			case null_teminator:
+				return false; //regex_str to short
+				break;
 			default:
 				break;
 			}
