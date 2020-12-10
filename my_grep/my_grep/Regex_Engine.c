@@ -129,3 +129,12 @@ int member_list_len(regex_member** member_list) {
 
 	return i;
 }
+
+void free_regex_member_list(regex_member** member_list) {
+	int i = 0;
+	while (member_list[i]->type != null_teminator) {
+		free(member_list[i]);
+		i++;
+	}
+	free(member_list[i]);
+}

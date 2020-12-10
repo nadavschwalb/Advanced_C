@@ -108,6 +108,7 @@ int main(int argc, char** argv) {
 	if ((_c & option_flag) == _c) printf("%d\n", print_format_args.line_num -1);
 
 		fclose(p_input_file);
+		free_regex_member_list(member_list);
 		free(member_list);
 		return 0;
 
