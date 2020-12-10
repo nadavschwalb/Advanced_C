@@ -13,7 +13,7 @@ regex_member** regex_parser(char* search_str,regex_member** member_list, int* me
 	int regex_state = -1;
 
 	while (*search_str != '\0') {
-		member_list[member_count] = (regex_member*)malloc(sizeof(regex_member));
+		member_list[member_count] = (regex_member*)malloc(sizeof(regex_member*));
 		switch (*search_str)
 		{
 		case '(':
@@ -23,18 +23,18 @@ regex_member** regex_parser(char* search_str,regex_member** member_list, int* me
 			search_str = handle_square_brackets(search_str + 1, member_list[member_count]);
 			break;
 		case'.':
-			member_list[member_count] = (regex_member*)malloc(sizeof(regex_member));
+			member_list[member_count] = (regex_member*)malloc(sizeof(regex_member*));
 			member_list[member_count]->simple_char = *search_str;
 			member_list[member_count]->type = dot;
 			break;
 		case '\\':
-			member_list[member_count] = (regex_member*)malloc(sizeof(regex_member));
+			member_list[member_count] = (regex_member*)malloc(sizeof(regex_member*));
 			//member_list[member_count]->simple_char = *(search_str++); choose this option if bug apears on nova
 			member_list[member_count]->simple_char = *(search_str+=1);
 			member_list[member_count]->type = regular_char;
 			break;
 		default:
-			member_list[member_count] = (regex_member*)malloc(sizeof(regex_member));
+			member_list[member_count] = (regex_member*)malloc(sizeof(regex_member*));
 			member_list[member_count]->simple_char = *search_str;
 			member_list[member_count]->type = regular_char;
 			break;
@@ -42,7 +42,7 @@ regex_member** regex_parser(char* search_str,regex_member** member_list, int* me
 		search_str++;
 		member_count++;
 	}
-	member_list[member_count] = (regex_member*)malloc(sizeof(regex_member)); //add closing member
+	member_list[member_count] = (regex_member*)malloc(sizeof(regex_member*)); //add closing member
 	member_list[member_count]->simple_char = *search_str;
 	member_list[member_count]->type = null_teminator;
 
@@ -51,7 +51,7 @@ regex_member** regex_parser(char* search_str,regex_member** member_list, int* me
 }
 
 char* handle_parentheses(char* input_string, regex_member* member) {
-	member->p_parentheses = (parentheses*)malloc(sizeof(parentheses));
+	member->p_parentheses = (parentheses*)malloc(sizeof(parentheses*));
 	member->p_parentheses->str_a = (char*)malloc(strlen(input_string));
 	member->p_parentheses->str_b = (char*)malloc(strlen(input_string));
 	member->type = paren;
@@ -77,7 +77,7 @@ char* handle_parentheses(char* input_string, regex_member* member) {
 }
 
 char* handle_square_brackets(char* input_string, regex_member* member) {
-	member->p_square_bracket = (square_bracket*)malloc(sizeof(square_bracket));
+	member->p_square_bracket = (square_bracket*)malloc(sizeof(square_bracket*));
 	member->type = bracket;
 	member->p_square_bracket->start_char = *input_string;
 	input_string += 2;
