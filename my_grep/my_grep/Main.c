@@ -84,7 +84,7 @@ int main(int argc, char** argv) {
 	
 	//-E development
 
-	regex_member** member_list = (regex_member**)malloc(sizeof(regex_member*)*strlen(search_args.regex_str) + 1);
+	regex_member** member_list = (regex_member**)malloc(sizeof(regex_member*)*(strlen(search_args.regex_str) + 1));
 	int member_list_len = 0;
 	member_list = regex_parser(search_args.regex_str,member_list,&member_list_len);
 	//print_members(member_list, member_list_len);
@@ -108,7 +108,7 @@ int main(int argc, char** argv) {
 	if ((_c & option_flag) == _c) printf("%d\n", print_format_args.line_num -1);
 
 		fclose(p_input_file);
-		//free_regex_member_list(member_list);
+		free_regex_member_list(member_list);
 		free(member_list);
 		return 0;
 
