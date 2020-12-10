@@ -33,6 +33,7 @@ typedef struct regex_member {
 
 regex_member** regex_parser(char* search_str, regex_member** member_list, int* member_list_len);
 void print_members(regex_member** member_list, int list_size);
+int member_list_len(regex_member** member_list);
 #endif // !REGEX_ENGINE_H
 
 

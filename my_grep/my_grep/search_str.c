@@ -10,6 +10,8 @@
 void str_lowwer(char* str_to_modifie);
 bool regex_strcmp(char* test_str, regex_member** member_list);
 int resolve_parentheses(char* test_str, regex_member* member);
+bool regex_strsrt(char* test_str, regex_member** member_list);
+
 
 bool search_str(char* new_line, char* search_phrase, regex_member** member_list, int option_flag)
 {
@@ -33,11 +35,11 @@ bool search_str(char* new_line, char* search_phrase, regex_member** member_list,
 	if (_x ==(_x & option_flag)) {
 		if (_E == (_E&option_flag)) {
 			if (regex_strcmp(line_copy, member_list)) {
-				printf("compare true\n");
+				//printf("compare true\n");
 				return true;
 			}
 			else {
-				printf("compare false\n");
+				//printf("compare false\n");
 				return false;
 			}
 		}
@@ -50,8 +52,20 @@ bool search_str(char* new_line, char* search_phrase, regex_member** member_list,
 	}
 
 	else {
-		if (strstr(line_copy, phrase_copy) == NULL) return_val= false;
-		else return_val= true;
+		if (_E == (_E&option_flag)) {
+			if (regex_strsrt(line_copy, member_list)) {
+				//printf("compare true\n");
+				return_val =  true;
+			}
+			else {
+				//printf("compare false\n");
+				return_val = false;
+			}
+		}
+		else {
+			if (strstr(line_copy, phrase_copy) == NULL) return_val = false;
+			else return_val = true;
+		}
 	}
 	free(line_copy);
 	free(phrase_copy);
@@ -131,6 +145,60 @@ bool regex_strcmp(char* test_str, regex_member** member_list) {
 		i++;
 	} while (loop_condition);
 	return true;
+}
+
+bool regex_strsrt(char* test_str, regex_member** member_list) {
+	//const char* test_str_cpy = test_str;
+	char test_char;
+	char regex_char;
+	bool loop_condition = true;
+	int i = 0;
+	while (*test_str != '\0') {
+		i = 0;
+		char* curser = test_str;
+		do
+		{
+			test_char = *(curser++);
+			if (test_char == '\n') {
+				loop_condition = false;
+			}
+			else {
+				switch (member_list[i]->type)
+				{
+				case regular_char:
+					regex_char = member_list[i]->simple_char;
+					if (regex_char == test_char) loop_condition = true;
+					else loop_condition = false;
+					break;
+				case dot:
+					loop_condition = true;
+					break;
+				case bracket:
+					if (test_char >= member_list[i]->p_square_bracket->start_char &&
+						test_char <= member_list[i]->p_square_bracket->end_char) loop_condition = true;
+					else loop_condition = false;
+					break;
+				case paren:
+					curser -= 1;
+					int move_str = resolve_parentheses(curser, member_list[i]);
+					if (move_str != 0) {
+						curser += move_str;
+						loop_condition = true;
+					}
+					else loop_condition = false;
+					break;
+				case null_teminator:
+					return true;
+					break;
+				default:
+					break;
+				}
+			}
+			i++;
+		} while (loop_condition);
+		test_str += 1;
+	}
+	return false;
 }
 
 int resolve_parentheses(char* test_str, regex_member* member) {

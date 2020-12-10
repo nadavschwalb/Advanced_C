@@ -87,7 +87,7 @@ int main(int argc, char** argv) {
 	regex_member** member_list = (regex_member**)malloc(sizeof(regex_member*)*strlen(search_args.regex_str) + 1);
 	int member_list_len = 0;
 	member_list = regex_parser(search_args.regex_str,member_list,&member_list_len);
-	print_members(member_list, member_list_len);
+	//print_members(member_list, member_list_len);
 	
 
 	//end of -E development

@@ -82,7 +82,7 @@ char* handle_square_brackets(char* input_string, regex_member* member) {
 	member->p_square_bracket->start_char = *input_string;
 	input_string += 2;
 	member->p_square_bracket->end_char = *input_string;
-	input_string += 2;
+	input_string += 1;
 	return input_string;
 }
 
@@ -118,4 +118,14 @@ void print_members(regex_member** member_list, int list_size) {
 		}
 
 	}
+}
+
+int member_list_len(regex_member** member_list) {
+	int i = 0;
+	do
+	{
+		i++;
+	} while (member_list[i]->type!=null_teminator);
+
+	return i;
 }
