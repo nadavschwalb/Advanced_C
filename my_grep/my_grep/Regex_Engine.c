@@ -52,8 +52,8 @@ regex_member** regex_parser(char* search_str,regex_member** member_list, int* me
 
 char* handle_parentheses(char* input_string, regex_member* member) {
 	member->p_parentheses = (parentheses*)malloc(sizeof(parentheses));
-	member->p_parentheses->str_a = (char*)malloc(strlen(input_string));
-	member->p_parentheses->str_b = (char*)malloc(strlen(input_string));
+	member->p_parentheses->str_a = (char*)malloc(strlen(input_string)*sizeof(char));
+	member->p_parentheses->str_b = (char*)malloc(strlen(input_string)*sizeof(char));
 	member->type = paren;
 	int i = 0;
 	int j = 0;
@@ -132,9 +132,25 @@ int member_list_len(regex_member** member_list) {
 
 void free_regex_member_list(regex_member** member_list) {
 	int i = 0;
+	//printf("member list length: %d\n",member_list_len(member_list));
 	while (member_list[i]->type != null_teminator) {
-		free(member_list[i]);
+		switch(member_list[i]->type){
+		case paren:
+			free(member_list[i]->p_parentheses->str_a);
+			free(member_list[i]->p_parentheses->str_b);
+			free(member_list[i]->p_parentheses);
+			free(member_list[i]);
+			break;
+		case bracket:
+			free(member_list[i]->p_square_bracket);
+			free(member_list[i]);
+			break;
+		default:
+			free(member_list[i]);
+			break;
+		}
 		i++;
 	}
 	free(member_list[i]);
+	//printf("members freed: %d\n",i);
 }
