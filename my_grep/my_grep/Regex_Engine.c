@@ -52,8 +52,8 @@ regex_member** regex_parser(char* search_str,regex_member** member_list, int* me
 
 char* handle_parentheses(char* input_string, regex_member* member) {
 	member->p_parentheses = (parentheses*)malloc(sizeof(parentheses*));
-	member->p_parentheses->str_a = (char*)malloc(strlen(input_string));
-	member->p_parentheses->str_b = (char*)malloc(strlen(input_string));
+	member->p_parentheses->str_a = (char*)malloc(strlen(input_string)*sizeof(char));
+	member->p_parentheses->str_b = (char*)malloc(strlen(input_string)*sizeof(char));
 	member->type = paren;
 	int i = 0;
 	int j = 0;
