@@ -159,40 +159,35 @@ bool regex_strsrt(char* test_str, regex_member** member_list) {
 		do
 		{
 			test_char = *(curser++);
-			if (test_char == '\n') {
-				loop_condition = false;
-			}
-			else {
-				switch (member_list[i]->type)
-				{
-				case regular_char:
-					regex_char = member_list[i]->simple_char;
-					if (regex_char == test_char) loop_condition = true;
-					else loop_condition = false;
-					break;
-				case dot:
+			switch (member_list[i]->type)
+			{
+			case regular_char:
+				regex_char = member_list[i]->simple_char;
+				if (regex_char == test_char) loop_condition = true;
+				else loop_condition = false;
+				break;
+			case dot:
+				loop_condition = true;
+				break;
+			case bracket:
+				if (test_char >= member_list[i]->p_square_bracket->start_char &&
+					test_char <= member_list[i]->p_square_bracket->end_char) loop_condition = true;
+				else loop_condition = false;
+				break;
+			case paren:
+				curser -= 1;
+				int move_str = resolve_parentheses(curser, member_list[i]);
+				if (move_str != 0) {
+					curser += move_str;
 					loop_condition = true;
-					break;
-				case bracket:
-					if (test_char >= member_list[i]->p_square_bracket->start_char &&
-						test_char <= member_list[i]->p_square_bracket->end_char) loop_condition = true;
-					else loop_condition = false;
-					break;
-				case paren:
-					curser -= 1;
-					int move_str = resolve_parentheses(curser, member_list[i]);
-					if (move_str != 0) {
-						curser += move_str;
-						loop_condition = true;
-					}
-					else loop_condition = false;
-					break;
-				case null_teminator:
-					return true;
-					break;
-				default:
-					break;
 				}
+				else loop_condition = false;
+				break;
+			case null_teminator:
+				return true;
+				break;
+			default:
+				break;
 			}
 			i++;
 		} while (loop_condition);
