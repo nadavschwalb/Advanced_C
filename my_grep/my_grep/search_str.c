@@ -9,7 +9,7 @@
 
 void str_lowwer(char* str_to_modifie);
 bool regex_strcmp(char* test_str, regex_member** member_list);
-int resolve_parentheses(char* test_str, regex_member* member);
+int resolve_parentheses(char* test_str, regex_member** member, int i);
 bool regex_strsrt(char* test_str, regex_member** member_list);
 
 
@@ -128,7 +128,7 @@ bool regex_strcmp(char* test_str, regex_member** member_list) {
 				break;
 			case paren:
 				curser -= 1;
-				int move_str = resolve_parentheses(curser, member_list[i]);
+				int move_str = resolve_parentheses(curser, member_list, i);
 				if (move_str != 0) {
 					curser += move_str;
 					loop_condition = true;
@@ -216,6 +216,8 @@ int resolve_parentheses(char* test_str, regex_member** member_list, int index) {
 		int member_list_len = get_list_len(member_list);
 		if ((member_list_len-index) > strlen(test_str)) {
 			ret_val = 0;
+			free(sub_str_a);
+			free(sub_str_b);
 			return ret_val;
 		}
 		else {

@@ -12,6 +12,10 @@ typedef struct formating_args {
 }formating_args;
 
 void print_formater(FILE* input_file, char* line_buffer, formating_args* args, int options_flag);
-void printer(FILE* input_file, search_args* search_args, formating_args* format_args, regex_member** member_list, int options_flag);
+void printer(FILE* input_file, 
+		search_args* search_args,
+		formating_args* format_args, 
+		regex_member** member_list, 
+		int options_flag);
 
 #endif // ! PRINT_FORMAT_H

@@ -35,7 +35,11 @@ void print_formater(FILE* input_file, char* line_buffer, formating_args* args, i
 }
 
 
-void printer(FILE* input_file, search_args* search_args, formating_args* format_args, regex_member** member_list, int options_flag) {
+void printer(FILE* input_file, 
+		search_args* search_args, 
+		formating_args* format_args, 
+		regex_member** member_list, 
+		int options_flag) {
 	
 	if ((_A & options_flag) == _A && format_args->first_line_found == true) { 
 		if (search_str(search_args->line, search_args->search_str,member_list ,options_flag)) { 
