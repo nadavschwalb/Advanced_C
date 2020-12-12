@@ -120,14 +120,14 @@ void print_members(regex_member** member_list, int list_size) {
 	}
 }
 
-int member_list_len(regex_member** member_list) {
+int get_list_len(regex_member** member_list) {
 	int i = 0;
 	do
 	{
 		i++;
 	} while (member_list[i]->type!=null_teminator);
 
-	return i;
+	return i+1;
 }
 
 void free_regex_member_list(regex_member** member_list) {
