@@ -177,8 +177,12 @@ bool regex_strsrt(char* test_str, regex_member** member_list) {
 			case paren:
 				curser -= 1;
 				int move_str = resolve_parentheses(curser, member_list[i]);
-				if (move_str != 0) {
+				if (move_str > 0) {
 					curser += move_str;
+					loop_condition = true;
+				}
+				else if (move_str == 0) {
+					curser += move_str + 1;
 					loop_condition = true;
 				}
 				else loop_condition = false;
@@ -210,13 +214,16 @@ int resolve_parentheses(char* test_str, regex_member* member) {
 	strncpy(sub_str_b, test_str, safty_buffer);
 	sub_str_a[len_a] = '\0';
 	sub_str_b[len_b] = '\0';
+	if (strlen(sub_str_a) == 0 || strlen(sub_str_b) == 0) {
+
+	}
 	if (strcmp(sub_str_a, str_a) == 0) {
 		ret_val = strlen(str_a);
 	} 
 	else if (strcmp(sub_str_b, str_b) == 0) {
 		ret_val = strlen(str_b);
 	}
-	else ret_val = 0;
+	else ret_val = -1;
 	free(sub_str_a);
 	free(sub_str_b);
 	return ret_val;
