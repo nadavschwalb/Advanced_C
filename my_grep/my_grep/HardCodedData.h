@@ -12,4 +12,8 @@
 #define _c 0b00000010
 #define _E 0b00000001
 
+typedef struct options_struct {
+  int option_flag;
+  int option_count;
+}options_struct;
 #endif  // !HARD_CODED_DATA_H

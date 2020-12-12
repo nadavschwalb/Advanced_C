@@ -1,6 +1,6 @@
 #ifndef PRINT_FORMAT_H
 #define PRINT_FORMAT_H
-
+#include <stdbool.h>
 typedef struct formating_args {
   int extra_lines_to_print;
   int extra_lines_count;

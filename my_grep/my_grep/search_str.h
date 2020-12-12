@@ -1,6 +1,6 @@
 #ifndef SEARCH_STR_H
 #define SEARCH_STR_H
-#include "HardCodedData.h"
+//#include "HardCodedData.h"
 #include "Regex_Engine.h"
 #include <stdbool.h>
 
