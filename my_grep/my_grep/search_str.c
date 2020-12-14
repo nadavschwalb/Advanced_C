@@ -35,11 +35,9 @@ bool search_str(char* new_line, char* search_phrase, regex_member** member_list,
 	if (_x ==(_x & option_flag)) {
 		if (_E == (_E&option_flag)) {
 			if (regex_strcmp(line_copy, member_list)) {
-				//printf("compare true\n");
 				return true;
 			}
 			else {
-				//printf("compare false\n");
 				return false;
 			}
 		}
@@ -54,11 +52,9 @@ bool search_str(char* new_line, char* search_phrase, regex_member** member_list,
 	else {
 		if (_E == (_E&option_flag)) {
 			if (regex_strsrt(line_copy, member_list)) {
-				//printf("compare true\n");
 				return_val =  true;
 			}
 			else {
-				//printf("compare false\n");
 				return_val = false;
 			}
 		}
@@ -148,7 +144,6 @@ bool regex_strcmp(char* test_str, regex_member** member_list) {
 }
 
 bool regex_strsrt(char* test_str, regex_member** member_list) {
-	//const char* test_str_cpy = test_str;
 	char test_char;
 	char regex_char;
 	bool loop_condition = true;
@@ -182,7 +177,6 @@ bool regex_strsrt(char* test_str, regex_member** member_list) {
 					loop_condition = true;
 				}
 				else if (move_str == 0) {
-					//curser += move_str + 1;
 					loop_condition = true;
 				}
 				else loop_condition = false;

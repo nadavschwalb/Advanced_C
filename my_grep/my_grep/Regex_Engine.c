@@ -132,7 +132,6 @@ int get_list_len(regex_member** member_list) {
 
 void free_regex_member_list(regex_member** member_list) {
 	int i = 0;
-	//printf("member list length: %d\n",member_list_len(member_list));
 	while (member_list[i]->type != null_teminator) {
 		switch(member_list[i]->type){
 		case paren:
@@ -152,5 +151,4 @@ void free_regex_member_list(regex_member** member_list) {
 		i++;
 	}
 	free(member_list[i]);
-	//printf("members freed: %d\n",i);
 }

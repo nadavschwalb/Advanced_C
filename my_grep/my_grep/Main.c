@@ -9,7 +9,7 @@
 
 
 int main(int argc, char** argv) {
-	int option_flag = 0b0; //options flag -i-v-n-b-x-A-c-E
+	int option_flag = 0b0;
 	int options_count = 0;
 	char file_name[MAX_BUFFER];
 	formating_args print_format_args = { 0, 0, 1, 0, false, ':'};
@@ -53,8 +53,6 @@ int main(int argc, char** argv) {
 				option_flag = option_flag | _E;
 				options_count+=1;
 				strcpy(search_args.regex_str, argv[i + 1]);
-				//regex_cleaner(search_args.regex_str, "\\");
-				//strcat(search_args.regex_str, "\0");
 				break;
 
 
@@ -81,16 +79,9 @@ int main(int argc, char** argv) {
 	if ((_E & option_flag) == _E) {
 		strcpy(search_args.search_str, search_args.regex_str);
 	}
-	
-	//-E development
-
 	regex_member** member_list = (regex_member**)malloc(sizeof(regex_member*)*(strlen(search_args.regex_str) + 1));
 	int member_list_len = 0;
 	member_list = regex_parser(search_args.regex_str,member_list,&member_list_len);
-	//print_members(member_list, member_list_len);
-	
-
-	//end of -E development
 
  	while (fgets(search_args.line, MAX_BUFFER, p_input_file) != NULL) {
 		if ((_c & option_flag) == _c) {
