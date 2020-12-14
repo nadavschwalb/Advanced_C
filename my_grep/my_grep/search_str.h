@@ -11,7 +11,6 @@ typedef struct search_args {
 }search_args;
 
 bool search_str(char* new_line, char* search_phrase, regex_member** member_list, int mode_flag);
-void regex_cleaner(char* dirtiy_str, char* delimiter);
 #endif // !SEARCH_STR_H
 
 

@@ -7,6 +7,7 @@
 #include "Print_Formats.h"
 #include "Regex_Engine.h"
 
+void print_formater(FILE* input_file, char* line_buffer, formating_args* args, int options_flag);
 void print_formater(FILE* input_file, char* line_buffer, formating_args* args, int options_flag) {
 	char* formated_line = (char*)malloc(MAX_BUFFER);
 	if (formated_line == NULL) { printf("failed to allocate memory\n"); exit(-1); }

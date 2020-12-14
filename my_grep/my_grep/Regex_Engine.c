@@ -6,7 +6,7 @@
 
 char* handle_parentheses(char* input_string, regex_member* member);
 char* handle_square_brackets(char* input_string, regex_member* member);
-
+void print_members(regex_member** member_list, int list_size);
 regex_member** regex_parser(char* search_str,regex_member** member_list, int* member_list_len) {
 	 
 	int member_count = 0;

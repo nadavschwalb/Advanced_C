@@ -81,18 +81,6 @@ void str_lowwer(char* str_to_modifie) {
 	return;
 }
 
-void regex_cleaner(char* dirtiy_str, char* delimiter) {
-	char* tokens[MAX_BUFFER];
-	int i = 1;
-	tokens[0] = strtok(dirtiy_str, "\\");
-	
-	while (tokens[i-1] != NULL) {
-		tokens[i] = strtok(NULL, "\\");
-		i++;
-	}
-	
-	sprintf(dirtiy_str, "%s%s", tokens[0], tokens[1]);
-}
 
 bool regex_strcmp(char* test_str, regex_member** member_list) {
 	char* curser = test_str;
