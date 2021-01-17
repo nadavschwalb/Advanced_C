@@ -1,3 +1,4 @@
+#!/usr/bin/python2.7 -tt
 import sys
 from socket import *
 import random
