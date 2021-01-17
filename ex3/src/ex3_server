@@ -26,6 +26,7 @@ while(True):
   while(True):
     recv_data += str(s.recv(BUFF_LENGTH).decode("utf-8"))
     if '\r\n\r\n' in recv_data:
+      print("message recieved")
       break
 
   data_lines = recv_data.split("\r\n")
@@ -36,6 +37,7 @@ while(True):
   else:
     msg = error_msg
   s.sendall(bytes(msg))
+  print("message sent")
   print(counter)
   recv_data = ''
 
